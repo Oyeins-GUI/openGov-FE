@@ -43,7 +43,11 @@ export default function LandingPage() {
                efficiently and transparently while supporting grassroots
                initiatives through mini grants.
             </Typography>
-            <Link href="https://github.com/Oyeins-GUI/openGov-FE/#readme">
+            <Link
+               href="https://github.com/Oyeins-GUI/openGov-FE/#readme"
+               target="_blank"
+               rel="noopener"
+            >
                <Button variant="outlined" style={{ marginBlock: "20px" }}>
                   Read More
                </Button>
