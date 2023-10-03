@@ -1,5 +1,4 @@
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import { Typography, Button, Link } from "@mui/material";
 
 export default function LandingPage() {
    return (
@@ -8,13 +7,13 @@ export default function LandingPage() {
             <Typography
                variant="h3"
                style={{
-                  marginTop: "80px",
+                  marginTop: "100px",
                   textAlign: "center",
                   minWidth: "300px",
                   maxWidth: "500px",
                }}
             >
-               Lorem ipsum dolor sit amet consectetur elit!
+               About Open Gov
             </Typography>
          </div>
          <div
@@ -33,22 +32,22 @@ export default function LandingPage() {
                }}
                sx={{ maxWidth: "600px", textAlign: "center" }}
             >
-               Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-               molestias dolores corrupti officiis quos architecto est deleniti
-               quis cupiditate ratione autem facilis illo nihil eum porro
-               accusantium fugit quam ipsa similique id facere, laudantium
-               veritatis? Corporis neque laboriosam quo! Laborum quibusdam minus
-               fugiat libero beatae explicabo neque corrupti asperiores maiores.
-               Lorem ipsum dolor sit amet consectetur adipisicing elit.
-               Assumenda, eligendi Lorem ipsum dolor sit amet consectetur,
-               adipisicing elit. Necessitatibus minus alias deleniti eius,
-               asperiores repudiandae vero? Hic ipsum rerum neque molestiae quo
-               impedit, ipsa reiciendis corrupti eveniet? Maxime, commodi
-               veritatis.
+               In an era where decentralization and transparency are becoming
+               increasingly important, blockchain technology has emerged as a
+               powerful tool for fostering democratic decision-making processes.
+               This project aims to leverage the Stacks blockchain to create a
+               system that facilitates democratic decision-making through voting
+               mechanisms, smart contracts, and a decentralized mini grant
+               delegation pool. By combining these elements, we aim to empower
+               communities and organizations to make collective decisions
+               efficiently and transparently while supporting grassroots
+               initiatives through mini grants.
             </Typography>
-            <Button variant="outlined" style={{ marginBlock: "20px" }}>
-               Get Started
-            </Button>
+            <Link href="https://github.com/Oyeins-GUI/openGov-FE/#readme">
+               <Button variant="outlined" style={{ marginBlock: "20px" }}>
+                  Read More
+               </Button>
+            </Link>
          </div>
       </>
    );

@@ -16,21 +16,33 @@ export default function NavTabs() {
          onChange={(e, value) => setValue(value)}
          sx={{ marginLeft: "auto" }}
       >
-         <Link to="/" style={{ color: "white" }}>
-            <Tab label="Home"></Tab>
-         </Link>
-         <Link
-            to={signedIn ? "/create-proposal" : "/"}
-            style={{ color: "white" }}
-         >
-            <Tab label="Create Proposal" />
-         </Link>
-         <Link
-            to={signedIn ? "/view-proposals" : "/"}
-            style={{ color: "white" }}
-         >
-            <Tab label="View Proposals" />
-         </Link>
+         <Tab
+            label={
+               <Link to="/" style={{ color: "white", textDecoration: "none" }}>
+                  Home
+               </Link>
+            }
+         />
+         <Tab
+            label={
+               <Link
+                  to="/create-proposal"
+                  style={{ color: "white", textDecoration: "none" }}
+               >
+                  Create Proposal
+               </Link>
+            }
+         />
+         <Tab
+            label={
+               <Link
+                  to="/view-proposals"
+                  style={{ color: "white", textDecoration: "none" }}
+               >
+                  View Proposals
+               </Link>
+            }
+         />
       </Tabs>
    );
 }
