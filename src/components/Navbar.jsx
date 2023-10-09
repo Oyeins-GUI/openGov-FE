@@ -1,7 +1,6 @@
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import DrawerComp from "../components/DrawerComp";
 import NavTabs from "./NavTabs";
@@ -19,7 +18,7 @@ function Navbar() {
             <Toolbar>
                {isMatch && <DrawerComp />}
                <Typography variant="h6" className={classes.logo}>
-                  OpenGov
+                  StacksOpenGov
                </Typography>
                {!isMatch && <NavTabs />}
                <ConnectWallet />
