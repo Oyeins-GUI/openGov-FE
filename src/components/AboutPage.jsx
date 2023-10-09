@@ -1,11 +1,11 @@
 import { Typography, Button, Link } from "@mui/material";
 
-export default function LandingPage() {
+export default function AboutPage() {
    return (
       <>
          <div style={{ display: "grid", placeItems: "center" }}>
             <Typography
-               variant="h3"
+               variant="h4"
                style={{
                   marginTop: "100px",
                   textAlign: "center",
@@ -13,7 +13,7 @@ export default function LandingPage() {
                   maxWidth: "500px",
                }}
             >
-               About Open Gov
+               About Stacks Open Gov
             </Typography>
          </div>
          <div
@@ -44,7 +44,7 @@ export default function LandingPage() {
                initiatives through mini grants.
             </Typography>
             <Link
-               href="https://github.com/Oyeins-GUI/openGov-FE/#readme"
+               href="https://github.com/Oyeins-GUI/openGov-FE/#empowering-democratic-decisions-stacks-blockchain-project-with-smart-contracts-and-decentralized-mini-grant-delegation-pool"
                target="_blank"
                rel="noopener"
             >

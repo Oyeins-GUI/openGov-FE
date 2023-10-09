@@ -14,11 +14,11 @@ export async function callCreateProposal(title, niche, description) {
    const options = {
       network: testnet,
       contractAddress: "ST16FECHZJPM4Z95D0Y2G7MSPGK0JHHCAE3JT049N",
-      contractName: "open-gov-v2",
+      contractName: "open-gov-v5",
       functionName: "create-proposal",
       functionArgs,
       appDetails: {
-         name: "openGov",
+         name: "Stacks Open Gov",
          icon: window.location.origin + "/my-app-logo.svg",
       },
       onFinish: (data) => {
@@ -27,6 +27,9 @@ export async function callCreateProposal(title, niche, description) {
          console.log("Transaction ID:", data.txId);
          console.log("Raw transaction:", data.txRaw);
          console.log("View transaction in explorer:", explorerTransactionUrl);
+         alert(
+            "When transaction is confirmed it will be available in https://localhost:5173/view-proposals"
+         );
       },
    };
 
@@ -39,7 +42,7 @@ export async function likeProposal(id) {
    const options = {
       network: testnet,
       contractAddress: "ST16FECHZJPM4Z95D0Y2G7MSPGK0JHHCAE3JT049N",
-      contractName: "open-gov-v2",
+      contractName: "open-gov-v5",
       functionName: "like-proposal",
       functionArgs,
       appDetails: {
@@ -64,7 +67,7 @@ export async function dislikeProposal(id) {
    const options = {
       network: testnet,
       contractAddress: "ST16FECHZJPM4Z95D0Y2G7MSPGK0JHHCAE3JT049N",
-      contractName: "open-gov-v2",
+      contractName: "open-gov-v5",
       functionName: "dislike-proposal",
       functionArgs,
       appDetails: {

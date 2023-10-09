@@ -1,11 +1,11 @@
 import Navbar from "../components/Navbar";
-import LandingPage from "../components/LandingPage";
+import Proposals from "../components/Proposals";
 
 export default function Home() {
    return (
       <>
          <Navbar />
-         <LandingPage />
+         <Proposals />
       </>
    );
 }

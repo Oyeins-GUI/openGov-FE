@@ -4,26 +4,23 @@ import {
    AccordionSummary,
    AccordionDetails,
    Stack,
-   Card,
-   CardContent,
-   CardActions,
 } from "@mui/material";
-import {
-   ExpandMore,
-   ThumbUpOffAlt,
-   ThumbDownOffAlt,
-   Share,
-} from "@mui/icons-material";
-import IconButton from "@mui/material/IconButton";
-import LanguageIcon from "@mui/icons-material/Language";
+import { ExpandMore } from "@mui/icons-material";
 import { tupleToObject } from "../utils/tupleToObject";
 import { splitProposalId } from "../utils/splitId";
-import { likeProposal, dislikeProposal } from "../utils/ContractCall";
 import { useState, useEffect } from "react";
+import ProposalCard from "./ProposalCard";
 
 export default function GetProposals() {
-   const contractId = "ST16FECHZJPM4Z95D0Y2G7MSPGK0JHHCAE3JT049N.open-gov-v2";
+   const contractId =
+      "ST16FECHZJPM4Z95D0Y2G7MSPGK0JHHCAE3JT049N.events-create-v3";
+   const likeContractId =
+      "ST16FECHZJPM4Z95D0Y2G7MSPGK0JHHCAE3JT049N.events-like-v3";
+   const disLikeContractId =
+      "ST16FECHZJPM4Z95D0Y2G7MSPGK0JHHCAE3JT049N.events-dislike-v3";
    const [contractEvents, setContractEvents] = useState([]);
+   const [proposalLikesEvent, setProposalLikesEvents] = useState([]);
+   const [proposalDisLikesEvent, setProposalDisLikesEvents] = useState([]);
 
    useEffect(() => {
       const getContractEvents = async () => {
@@ -34,88 +31,86 @@ export default function GetProposals() {
          setContractEvents(res.results);
       };
       getContractEvents();
+
+      const getProposalLikes = async () => {
+         const req = await fetch(
+            `https://api.testnet.hiro.so/extended/v1/contract/${likeContractId}/events`
+         );
+         const res = await req.json();
+         setProposalLikesEvents(res.results);
+      };
+      getProposalLikes();
+
+      const getProposalDisLikes = async () => {
+         const req = await fetch(
+            `https://api.testnet.hiro.so/extended/v1/contract/${disLikeContractId}/events`
+         );
+         const res = await req.json();
+         setProposalDisLikesEvents(res.results);
+      };
+      getProposalDisLikes();
    }, []);
 
+   const allLikeEvents = proposalLikesEvent.map((events) => {
+      return events.contract_log.value.repr;
+   });
+   const allDislikeEvents = proposalDisLikesEvent.map((events) => {
+      return events.contract_log.value.repr;
+   });
+
    return (
-      <>
-         <Typography
-            variant="h4"
-            sx={{
-               marginTop: "80px",
-               marginBottom: "10px",
-               textAlign: "center",
-            }}
-         >
-            All Proposals
-         </Typography>
-         <Stack
-            sx={{
-               margin: "auto",
-               maxWidth: "620px",
-               paddingInline: "20px",
-            }}
-            direction="column"
-         >
-            {contractEvents.map((event, i) => {
-               const tupleObject = tupleToObject(event.contract_log.value.repr);
-               const desc = tupleObject.tuple.split("(desc ")[1];
-               const id = tupleObject.id;
+      <Stack
+         sx={{
+            margin: "auto",
+            maxWidth: "620px",
+            paddingInline: "20px",
+         }}
+         direction="column"
+      >
+         {contractEvents.map((event, i) => {
+            const tupleObject = tupleToObject(event.contract_log.value.repr);
+            const desc = tupleObject.tuple.split("(desc ")[1];
+            const id = tupleObject.id;
 
-               if (id === undefined) return;
+            if (id === undefined) return;
 
-               return (
-                  <div key={i}>
-                     <Accordion sx={{ marginTop: "15px" }}>
-                        <AccordionSummary
-                           expandIcon={<ExpandMore />}
-                           sx={{
-                              textTransform: "capitalize",
-                              display: "flex",
-                              alignItems: "center",
-                           }}
-                        >
-                           <Typography variant="h6">
-                              {tupleObject.title}{" "}
-                              <Typography
-                                 variant="body1"
-                                 sx={{
-                                    textTransform: "lowercase",
-                                    display: "flex",
-                                    alignItems: "center",
-                                 }}
-                              >
-                                 id: {splitProposalId(id)}
-                              </Typography>
+            return (
+               <div key={i}>
+                  <Accordion sx={{ marginTop: "15px" }}>
+                     <AccordionSummary
+                        expandIcon={<ExpandMore />}
+                        sx={{
+                           textTransform: "capitalize",
+                           display: "flex",
+                           alignItems: "center",
+                        }}
+                     >
+                        <Typography variant="h6">
+                           {tupleObject.title}{" "}
+                           <Typography
+                              variant="body1"
+                              sx={{
+                                 textTransform: "lowercase",
+                                 display: "flex",
+                                 alignItems: "center",
+                              }}
+                           >
+                              id: {splitProposalId(id)}
                            </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                           <Card>
-                              <CardContent>{desc}</CardContent>
-                              <CardActions>
-                                 <IconButton onClick={() => likeProposal(id)}>
-                                    <ThumbUpOffAlt />
-                                    <Typography>0</Typography>
-                                 </IconButton>
-                                 <IconButton
-                                    onClick={() => dislikeProposal(id)}
-                                 >
-                                    <ThumbDownOffAlt />
-                                    <Typography>0</Typography>
-                                 </IconButton>
-                                 <IconButton>
-                                    <LanguageIcon />
-                                 </IconButton>
-                                 <IconButton>
-                                    <Share />
-                                 </IconButton>
-                              </CardActions>
-                           </Card>
-                        </AccordionDetails>
-                     </Accordion>
-                  </div>
-               );
-            })}
-         </Stack>
-      </>
+                        </Typography>
+                     </AccordionSummary>
+                     <AccordionDetails>
+                        <ProposalCard
+                           id={id}
+                           desc={desc}
+                           allLikeEvents={allLikeEvents}
+                           allDislikeEvents={allDislikeEvents}
+                        />
+                     </AccordionDetails>
+                  </Accordion>
+               </div>
+            );
+         })}
+      </Stack>
    );
 }

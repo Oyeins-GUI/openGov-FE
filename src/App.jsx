@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import CreateProposal from "./pages/CreateProposal";
 import ViewProposals from "./pages/ViewProposals";
+import About from "./pages/About";
 import { userSession, authenticate } from "./components/ConnectWallet";
 
 function App() {
@@ -23,8 +24,12 @@ function App() {
                   element={signedIn ? <CreateProposal /> : <NotSignedIn />}
                />
                <Route
-                  path="/view-proposals"
+                  path="/view-proposal"
                   element={signedIn ? <ViewProposals /> : <NotSignedIn />}
+               />
+               <Route
+                  path="/about"
+                  element={signedIn ? <About /> : <NotSignedIn />}
                />
             </Routes>
          </ThemeProvider>

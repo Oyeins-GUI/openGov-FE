@@ -8,7 +8,7 @@ import { useState } from "react";
 
 function DrawerComp() {
    const [openDrawer, setOpenDrawer] = useState(false);
-   const pages = ["Home", "Create Proposal", "View Proposals"];
+   const pages = ["Home", "Create Proposal", "View Proposal", "About"];
 
    return (
       <>
@@ -25,7 +25,8 @@ function DrawerComp() {
                </div>
                <DrawerListItems to="/" label="Home" />
                <DrawerListItems to="/create-proposal" label="Create Proposal" />
-               <DrawerListItems to="/view-proposals" label="View Proposals" />
+               <DrawerListItems to="/view-proposal" label="View Proposal" />
+               <DrawerListItems to="/about" label="About" />
             </List>
          </Drawer>
          <IconButton onClick={() => setOpenDrawer(!openDrawer)} color="inherit">

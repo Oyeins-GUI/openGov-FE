@@ -36,10 +36,20 @@ export default function NavTabs() {
          <Tab
             label={
                <Link
-                  to="/view-proposals"
+                  to="/view-proposal"
                   style={{ color: "white", textDecoration: "none" }}
                >
-                  View Proposals
+                  View Proposal
+               </Link>
+            }
+         />
+         <Tab
+            label={
+               <Link
+                  to="/about"
+                  style={{ color: "white", textDecoration: "none" }}
+               >
+                  About
                </Link>
             }
          />
