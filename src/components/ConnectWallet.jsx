@@ -8,7 +8,7 @@ export const userSession = new UserSession({ appConfig });
 export function authenticate() {
    showConnect({
       appDetails: {
-         name: "openGov",
+         name: "Stacks Open Gov",
          icon: window.location.origin + "/logo512.png",
       },
       redirectTo: "/view-proposals",

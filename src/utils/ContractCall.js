@@ -1,6 +1,6 @@
-import { openContractCall } from "@stacks/connect";
 import { uintCV, stringAsciiCV } from "@stacks/transactions";
 import { StacksTestnet } from "@stacks/network";
+import { openContractCall } from "@stacks/connect";
 
 const testnet = new StacksTestnet();
 
@@ -80,6 +80,34 @@ export async function dislikeProposal(id) {
          console.log("Transaction ID:", data.txId);
          console.log("Raw transaction:", data.txRaw);
          console.log("View transaction in explorer:", explorerTransactionUrl);
+      },
+   };
+
+   await openContractCall(options);
+}
+
+export async function fundTreasuryPool(amount) {
+   const functionArgs = [uintCV(amount)];
+
+   const options = {
+      network: testnet,
+      contractAddress: "ST16FECHZJPM4Z95D0Y2G7MSPGK0JHHCAE3JT049N",
+      contractName: "fund-treasury-pool",
+      functionName: "fund-treasury-pool",
+      functionArgs,
+      appDetails: {
+         name: "Stacks Open Gov",
+         icon: window.location.origin + "/my-app-logo.svg",
+      },
+      onFinish: (data) => {
+         const explorerTransactionUrl = `https://explorer.stacks.co/txid/${data.txId}?chain=testnet`;
+         console.log("Stacks Transaction:", data.stacksTransaction);
+         console.log("Transaction ID:", data.txId);
+         console.log("Raw transaction:", data.txRaw);
+         console.log("View transaction in explorer:", explorerTransactionUrl);
+         alert(
+            "When transfer transaction is confirmed pool's balance will be updated in https://open-gov.vercel.app/treasury"
+         );
       },
    };
 

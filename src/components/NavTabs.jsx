@@ -1,58 +1,34 @@
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
+import { Tabs, Tab } from "@mui/material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { userSession } from "./ConnectWallet";
 
 export default function NavTabs() {
-   const [value, setValue] = useState();
+   const [value, setValue] = useState(1);
    const signedIn = userSession.isUserSignedIn();
+
+   const handleChange = (event, newValue) => {
+      setValue(newValue);
+   };
 
    return (
       <Tabs
          textColor="inherit"
-         value={value}
+         // value={value}
          indicatorColor="secondary"
-         onChange={(e, value) => setValue(value)}
+         onChange={(e, newValue) => console.log(newValue)}
          sx={{ marginLeft: "auto" }}
       >
+         <Tab label="Home" value={1} to="/" component={Link} />
          <Tab
-            label={
-               <Link to="/" style={{ color: "white", textDecoration: "none" }}>
-                  Home
-               </Link>
-            }
+            label="create proposal"
+            value={2}
+            to="/create-proposal"
+            component={Link}
          />
-         <Tab
-            label={
-               <Link
-                  to="/create-proposal"
-                  style={{ color: "white", textDecoration: "none" }}
-               >
-                  Create Proposal
-               </Link>
-            }
-         />
-         <Tab
-            label={
-               <Link
-                  to="/view-proposal"
-                  style={{ color: "white", textDecoration: "none" }}
-               >
-                  View Proposal
-               </Link>
-            }
-         />
-         <Tab
-            label={
-               <Link
-                  to="/about"
-                  style={{ color: "white", textDecoration: "none" }}
-               >
-                  About
-               </Link>
-            }
-         />
+         {/* <Tab label="view proposal" to="/view-proposal" component={Link} /> */}
+         <Tab label="treasury" value={3} to="/treasury" component={Link} />
+         <Tab label="about" value={4} to="/about" component={Link} />
       </Tabs>
    );
 }

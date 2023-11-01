@@ -64,6 +64,7 @@ export default function GetProposals() {
             margin: "auto",
             maxWidth: "620px",
             paddingInline: "20px",
+            paddingBottom: "30px",
          }}
          direction="column"
       >

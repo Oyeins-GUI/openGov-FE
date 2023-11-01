@@ -1,6 +1,4 @@
-import Button from "@mui/material/Button";
-import Stack from "@mui/material/Stack";
-import TextField from "@mui/material/TextField";
+import { Button, Stack, TextField } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { callCreateProposal } from "../utils/ContractCall";
 
@@ -23,11 +21,10 @@ export default function ProposalForm() {
       <>
          <div
             style={{
-               marginTop: "80px",
+               marginTop: "20px",
                textAlign: "center",
             }}
          >
-            <h1>Create A Proposal</h1>
             <form
                noValidate
                onSubmit={handleSubmit(onSubmit)}

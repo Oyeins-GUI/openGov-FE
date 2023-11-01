@@ -5,7 +5,6 @@ import LanguageIcon from "@mui/icons-material/Language";
 import { splitProposalId } from "../utils/splitId";
 import { likeTupleToObject } from "../utils/parseTuple";
 import { likeProposal, dislikeProposal } from "../utils/ContractCall";
-import { useEffect, useState } from "react";
 
 export default function ProposalCard({
    id,
@@ -42,8 +41,6 @@ export default function ProposalCard({
             return event.dislikes;
       });
    };
-
-   console.log(displayDislikeCount(id)[0] === undefined);
 
    const displayLikeCount = (proposalId) => {
       return likeEvents.map((event) => {
